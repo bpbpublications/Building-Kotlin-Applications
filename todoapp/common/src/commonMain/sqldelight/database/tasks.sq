@@ -1,0 +1,34 @@
+
+CREATE TABLE IF NOT EXISTS taskEntity (
+    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT,
+    title TEXT NOT NULL,
+    complete INTEGER NOT NULL DEFAULT 0
+);
+
+getPendingTasks:
+SELECT *
+FROM taskEntity
+WHERE complete = 0;
+
+getAllTasks:
+SELECT *
+FROM taskEntity;
+
+getCompleteTasks:
+SELECT *
+FROM taskEntity
+WHERE complete = 1;
+
+insertTask:
+INSERT OR REPLACE
+INTO taskEntity (id, title)
+VALUES (?,?);
+
+deleteTask:
+DELETE FROM taskEntity
+WHERE id = ?;
+
+completeTask:
+UPDATE taskEntity
+SET complete = 1
+WHERE id = ?;
